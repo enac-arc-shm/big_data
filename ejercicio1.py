@@ -1,23 +1,29 @@
-import pandas as pd
-import matplotlib.pyplot as plt
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+import pandas as pd
+import matplotlib.pyplot as plt
+import datetime
+import locale
 
 
-def add_image(image_path):
-    my_canvas = canvas.Canvas("canvas_image.pdf", pagesize=letter)
-    my_canvas.drawImage(image_path, 30, 600, width=100, height=100)
-    my_canvas.save()
+
+def get_date():
+    locale.setlocale(locale.LC_ALL, '')
+    fecha_actual = datetime.datetime.now()
+    return(fecha_actual.strftime('%A, %-d de %B de %Y'))
+
 
 def recopilar_datos():
-    fuente_datos = input("Ingresa la ruta del archivo: ")
-    fuente_datos = "Data/malicious_phish.csv"
+    fuente_datos = input("Ingresa la ruta del archivo csv: ")
+    #fuente_datos = "Data/malicious_phish.csv"
     df = pd.DataFrame(pd.read_csv(fuente_datos))
-    preparar_datos(df)
+    return df
+    
 
 def preparar_datos(df):
     df.drop('url', axis = "columns")
     modelo_analisis(df)
+
 
 def modelo_analisis(df):
     lista_resultados = []
@@ -41,21 +47,64 @@ def modelo_analisis(df):
     grafica_circular(df,lista_resultados)
     
 def grafica_barras(df, resultados):
+    colores = ["#EE6055","#60D394","#AAF683","#FFD97D","#FF9B85"]
     valor_x = df['type'].unique()
     valor_y = df['type'].value_counts().tolist()
-    plt.bar(valor_x, valor_y)
-    plt.savefig("Data/Img/figura1.png")
+    plt.bar(valor_x, valor_y, color = colores)
+    plt.savefig("Data/img/figura1.png")
     plt.close('all')
+    
 
 def grafica_circular(df, resultados):
-    fig, ax = plt.subplots()
-    ax.pie(df['type'].value_counts().tolist())
-    plt.show()
+    values =  df['type'].value_counts().tolist()
+    labels =  df['type'].unique()
+    colores = ["#EE6055","#60D394","#AAF683","#FFD97D","#FF9B85"]
+    desfase = (0, 0, 0, 0.1)
+    plt.pie(values, labels=labels, autopct="%0.1f %%", colors=colores, explode=desfase)
+    plt.axis("equal")
+    plt.savefig("Data/img/figura2.png")
+    plt.close('all')
 
-def generar_informe():
-    name = input("Ingrese el nombre del informe: ") 
+
+def generar_informe(df):
+    values =  df['type'].value_counts().tolist()
+    labels =  df['type'].unique().tolist()
+    name = "Data/informes/"
+    name += input("Ingrese el nombre del informe: ")
+    image_path_figure1 = 'Data/img/figura1.png'
+    image_path_figure2 = 'Data/img/figura2.png'
+    my_canvas = canvas.Canvas(name, pagesize=letter)
+    my_canvas.setLineWidth(.3)
+    my_canvas.setFont('Helvetica', 30)
+    my_canvas.drawString(120, 750, 'Reporte analisis de malware ')
+    my_canvas.drawImage(image_path_figure1, 40, 400, width=250, height=250)
+    my_canvas.drawImage(image_path_figure2, 340, 400, width=250, height=250)
+    my_canvas.setFont('Helvetica', 12)
+    my_canvas.drawString(30, 250, 'INFORM OFICIAL ')
+    my_canvas.drawString(410, 250, get_date())
+    my_canvas.line(380, 247, 580, 247)
+    y = 215
+    for label in labels:
+        my_canvas.drawString(30, y, label)
+        y-=20
+    y = 215
+    total = 0
+    for value in values: 
+        my_canvas.drawString(550, y, str(value))
+        y-=20
+        total += value
+    my_canvas.drawString(265, 125, 'TOTAL ANALIZADO:')
+    my_canvas.drawString(500, 125, str(total))
+    my_canvas.line(378, 123, 580, 123)
+    my_canvas.drawString(30, 103, 'CREADO POR:')
+    my_canvas.line(120, 100, 580, 100)
+    my_canvas.drawString(120, 103, "SERGIO HERNANDEZ MARTINEZ")
+    my_canvas.save()
+
 
 if __name__ == '__main__':
-    recopilar_datos()
-    #image_path = 'snakehead.jpg'
-    #add_image(image_path)
+    data = recopilar_datos()
+    #preparar_datos(data)
+    modelo_analisis(data)
+    generar_informe(data)
+    
