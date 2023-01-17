@@ -51,7 +51,7 @@ def grafica_barras(df, resultados):
     valor_x = df['type'].unique()
     valor_y = df['type'].value_counts().tolist()
     plt.bar(valor_x, valor_y, color = colores)
-    plt.savefig("Data/img/figura1.png")
+    plt.savefig("Data/img/malicious_phish_fig_1.png")
     plt.close('all')
     
 
@@ -62,7 +62,7 @@ def grafica_circular(df, resultados):
     desfase = (0, 0, 0, 0.1)
     plt.pie(values, labels=labels, autopct="%0.1f %%", colors=colores, explode=desfase)
     plt.axis("equal")
-    plt.savefig("Data/img/figura2.png")
+    plt.savefig("Data/img/malicious_phish_fig_2.png")
     plt.close('all')
 
 
@@ -71,8 +71,8 @@ def generar_informe(df):
     labels =  df['type'].unique().tolist()
     name = "Data/informes/"
     name += input("Ingrese el nombre del informe: ")
-    image_path_figure1 = 'Data/img/figura1.png'
-    image_path_figure2 = 'Data/img/figura2.png'
+    image_path_figure1 = 'Data/img/malicious_phish_fig_1.png'
+    image_path_figure2 = 'Data/img/malicious_phish_fig_2.png'
     my_canvas = canvas.Canvas(name, pagesize=letter)
     my_canvas.setLineWidth(.3)
     my_canvas.setFont('Helvetica', 30)

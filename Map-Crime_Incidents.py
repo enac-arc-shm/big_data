@@ -1,13 +1,14 @@
 from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+from fpdf import FPDF
 import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
 import locale
 
 
-path_csv = "Data/Map-Crime_Incidents-Previous_Three_Months.csv"
 
+path_csv = "Data/Map-Crime_Incidents-Previous_Three_Months.csv"
+pdf = FPDF()
 
 def get_date():
     locale.setlocale(locale.LC_ALL, '')
@@ -22,98 +23,64 @@ def recopilar_datos():
     
 
 def preparar_datos(df):
-    resultados = []
     df = df[df['Category'] == 'ASSAULT']
     df = df[df['DayOfWeek'] == 'Sunday']
-
-    df_MISSION = df[df['PdDistrict'] == 'MISSION']
-    df_RICHMOND = df[df['PdDistrict'] == 'RICHMOND']
-    df_SOUTHERN = df[df['PdDistrict'] == 'SOUTHERN']
-    resultados.append(df_MISSION)
-    print(resultados[0])
+    df_PdDistrict = df[df.PdDistrict.isin(["RICHMOND", "SOUTHERN", "MISSION"])]
+    #print(df_PdDistrict[['Category', 'DayOfWeek','PdDistrict']])  
+    return df_PdDistrict
 
 
 def modelo_analisis(df):
-    lista_resultados = []
+    df_data_MISSION = df.query("PdDistrict == 'MISSION'")
+    df_data_RICHMOND = df.query("PdDistrict == 'RICHMOND'")
+    df_data_SOUTHERN = df.query("PdDistrict == 'SOUTHERN'")
 
-    benign = df.query("type == 'benign'")
-    total_benign = benign.count()
-    lista_resultados +=  ["benign", total_benign ]
-
-    defacement = df.query("type == 'defacement'")
-    total_defacement = defacement.count()
-    lista_resultados +=  ["defacement", total_defacement ]
-
-    phishing = df.query("type == 'phishing'")
-    total_phishing = phishing.count()
-    lista_resultados +=  ["phishing", total_phishing ]
-
-    malware = df.query("type == 'malware'")
-    total_malware = malware.count()
-    lista_resultados +=  ["malware", total_malware ]
-    grafica_barras(df,lista_resultados)
-    grafica_circular(df,lista_resultados)
+    print(df_data_MISSION.value_counts())
+    return df_data_MISSION, df_data_RICHMOND, df_data_SOUTHERN
     
-def grafica_barras(df, resultados):
+def grafica_barras(df):
     colores = ["#EE6055","#60D394","#AAF683","#FFD97D","#FF9B85"]
-    valor_x = df['type'].unique()
-    valor_y = df['type'].value_counts().tolist()
+    valor_x = df['PdDistrict'].unique()
+    valor_y = df['PdDistrict'].value_counts().tolist()
     plt.bar(valor_x, valor_y, color = colores)
-    plt.savefig("Data/img/figura1.png")
+    plt.savefig("Data/img/Map-Crime_Incidents_fig_1.png")
     plt.close('all')
     
 
-def grafica_circular(df, resultados):
-    values =  df['type'].value_counts().tolist()
-    labels =  df['type'].unique()
+def grafica_circular(df):
+    values =  df['PdDistrict'].value_counts().tolist()
+    labels =  df['PdDistrict'].unique()
     colores = ["#EE6055","#60D394","#AAF683","#FFD97D","#FF9B85"]
     desfase = (0, 0, 0, 0.1)
-    plt.pie(values, labels=labels, autopct="%0.1f %%", colors=colores, explode=desfase)
+    #print(values, labels)
+    plt.pie(values, labels=labels, autopct="%0.1f %%", colors=colores)
+    #plt.show()
     plt.axis("equal")
-    plt.savefig("Data/img/figura2.png")
+    plt.savefig("Data/img/Map-Crime_Incidents_fig_2.png")
     plt.close('all')
 
 
-def generar_informe(df):
-    values =  df['type'].value_counts().tolist()
-    labels =  df['type'].unique().tolist()
-    name = "Data/informes/"
-    name += input("Ingrese el nombre del informe: ")
-    image_path_figure1 = 'Data/img/figura1.png'
-    image_path_figure2 = 'Data/img/figura2.png'
-    my_canvas = canvas.Canvas(name, pagesize=letter)
-    my_canvas.setLineWidth(.3)
-    my_canvas.setFont('Helvetica', 30)
-    my_canvas.drawString(120, 750, 'Reporte analisis de malware ')
-    my_canvas.drawImage(image_path_figure1, 40, 400, width=250, height=250)
-    my_canvas.drawImage(image_path_figure2, 340, 400, width=250, height=250)
-    my_canvas.setFont('Helvetica', 12)
-    my_canvas.drawString(30, 250, 'INFORM OFICIAL ')
-    my_canvas.drawString(410, 250, get_date())
-    my_canvas.line(380, 247, 580, 247)
-    y = 215
-    for label in labels:
-        my_canvas.drawString(30, y, label)
-        y-=20
-    y = 215
-    total = 0
-    for value in values: 
-        my_canvas.drawString(550, y, str(value))
-        y-=20
-        total += value
-    my_canvas.drawString(265, 125, 'TOTAL ANALIZADO:')
-    my_canvas.drawString(500, 125, str(total))
-    my_canvas.line(378, 123, 580, 123)
-    my_canvas.drawString(30, 73, 'RESULTADO: CREAR UN SISTEMA DE PREVENCIÓN PRINCIPALMENTE ORIENTADO A PHISHING')
-    my_canvas.drawString(30, 43, 'CREADO POR:')
-    my_canvas.line(120, 40, 580, 40)
-    my_canvas.drawString(120, 43, "SERGIO HERNANDEZ MARTINEZ")
-    my_canvas.save()
+def generar_informe(df, MISSION, RICHMOND, SOUTHERN):
+    grafica_barras(df)
+    grafica_circular(df)
+
+    name =  "Data/informes/informe_Map-Crime_Incidents.pdf"
+    pdf.add_page()
+    pdf.set_font("Arial", size = 25)
+    pdf.cell(200, 10, txt = "INFORME", ln = 1, align = 'C')
+    pdf.set_font("Arial", size = 15)
+    pdf.cell(200, 10, txt = "MAP crime incidents", ln = 2, align = 'C')
+    pdf.image("Data/img/Map-Crime_Incidents_fig_1.png", 25,35,150)
+    pdf.image("Data/img/Map-Crime_Incidents_fig_2.png", 25,150,150)
+    pdf.add_page()
+    pdf.set_font("Arial", size = 12)
+    #for registro in MISSION.value_counts():
+    #    print(MISSION.iloc[registro])
 
 
 if __name__ == '__main__':
     data = recopilar_datos()
-    preparar_datos(data)
-    #modelo_analisis(data)
-    #generar_informe(data)
+    data_prepared = preparar_datos(data)
+    df_MISSION, df_RICHMOND, df_SOUTHERN =  modelo_analisis(data_prepared)
+    generar_informe(data_prepared, df_MISSION, df_RICHMOND, df_SOUTHERN)
     
