@@ -27,15 +27,14 @@ def preparar_datos(df):
     df = df[df['DayOfWeek'] == 'Sunday']
     df_PdDistrict = df[df.PdDistrict.isin(["RICHMOND", "SOUTHERN", "MISSION"])]
     #print(df_PdDistrict[['Category', 'DayOfWeek','PdDistrict']])  
-    return df_PdDistrict
+    return df_PdDistrict[['PdDistrict', 'X', 'Y', 'Location']]
 
 
 def modelo_analisis(df):
     df_data_MISSION = df.query("PdDistrict == 'MISSION'")
     df_data_RICHMOND = df.query("PdDistrict == 'RICHMOND'")
     df_data_SOUTHERN = df.query("PdDistrict == 'SOUTHERN'")
-
-    print(df_data_MISSION.value_counts())
+    #print(df_data_MISSION['PdDistrict'].value_counts())
     return df_data_MISSION, df_data_RICHMOND, df_data_SOUTHERN
     
 def grafica_barras(df):
@@ -74,9 +73,30 @@ def generar_informe(df, MISSION, RICHMOND, SOUTHERN):
     pdf.image("Data/img/Map-Crime_Incidents_fig_2.png", 25,150,150)
     pdf.add_page()
     pdf.set_font("Arial", size = 12)
-    #for registro in MISSION.value_counts():
-    #    print(MISSION.iloc[registro])
+    #print(MISSION['PdDistrict'].value_counts())
+    for registro in range(int(MISSION['PdDistrict'].value_counts())):
+        string_registro = ""
+        for elemento in MISSION.iloc[registro]:
+            string_registro += str(elemento)
+            string_registro += "    "
+        pdf.cell(200, 10, txt =  string_registro, ln = registro)
+        #print(string_registro)
+    for registro in range(int(RICHMOND['PdDistrict'].value_counts())):
+        string_registro = ""
+        for elemento in RICHMOND.iloc[registro]:
+            string_registro += str(elemento)
+            string_registro += "    "
+        pdf.cell(200, 10, txt =  string_registro, ln = registro)
+        #print(string_registro)
 
+    for registro in range(int(SOUTHERN['PdDistrict'].value_counts())):
+        string_registro = ""
+        for elemento in SOUTHERN.iloc[registro]:
+            string_registro += str(elemento)
+            string_registro += "    "
+        pdf.cell(200, 10, txt =  string_registro, ln = registro)
+        #print(string_registro)
+    pdf.output(name)
 
 if __name__ == '__main__':
     data = recopilar_datos()
