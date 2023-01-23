@@ -24,7 +24,7 @@ def recopilar_datos():
 
 def preparar_datos(df):
     df = df[df['Category'] == 'ASSAULT']
-    df = df[df['DayOfWeek'] == 'Sunday']
+    df = df[df['DayOfWeek'] == 'Saturday']
     df_PdDistrict = df[df.PdDistrict.isin(["RICHMOND", "SOUTHERN", "MISSION"])]
     #print(df_PdDistrict[['Category', 'DayOfWeek','PdDistrict']])  
     return df_PdDistrict[['PdDistrict', 'X', 'Y', 'Location']]
@@ -96,6 +96,11 @@ def generar_informe(df, MISSION, RICHMOND, SOUTHERN):
             string_registro += "    "
         pdf.cell(200, 10, txt =  string_registro, ln = registro)
         #print(string_registro)
+    pdf.cell(200, 150, txt =  "", ln = 1)
+    pdf.cell(200, 5, txt =  "TOMA DE DECISIONES:", ln = 2)
+    pdf.cell(200, 5, txt =  "De acuerdo a los resultados obtenidos que se ven reflejados en las graficas el indice de delitos por ", ln = 3)
+    pdf.cell(200, 5, txt =  "asalto en el día sabado son mayores en RICHMOND por lo que se deben de tomar medidas drasticas.", ln = 4)
+    pdf.cell(200, 5, txt =  f"Fecha: {get_date()}", ln = 5)
     pdf.output(name)
 
 if __name__ == '__main__':
