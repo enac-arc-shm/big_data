@@ -76,7 +76,6 @@ def grafica_circular(data):
 
 def generar_informe(count_crimes, count_crimes_none):
     name =  "Data/informes/informe_Map-Crime_incidents_recurrents.pdf"
-
     grafica_circular(count_crimes)
     grafica_barras(count_crimes, count_crimes_none)
     pdf.add_page()
@@ -98,7 +97,11 @@ def generar_informe(count_crimes, count_crimes_none):
     pdf.cell(200, 5, txt =  "De acuerdo a los resultados obtenidos, nos damos cuenta que en la mayoría de ", ln = 3)
     pdf.cell(200, 5, txt =  "casos de crimen según la zona, no son resueltos. El crimen más común es el de ", ln = 4)
     pdf.cell(200, 5, txt =  "larceny/theft y este mismo crimen, es el que menos resoluciones tiene, por lo que", ln = 5)  
-    pdf.cell(200, 5, txt =  "deberían tomar acciones ante este.", ln = 6)   
+    pdf.cell(200, 5, txt =  "Los resultados nos muestran que el crimen mas concurrido y para desgracia el ", ln = 6)   
+    pdf.cell(200, 5, txt =  "lugar, el menos solucionado es el robo, por lo que se deben tomar medidas de seguridad ", ln = 7)   
+    pdf.cell(200, 5, txt =  "inmediatas para solucionar y reducir el número de incidentes de este tipo,", ln = 8)   
+    pdf.cell(200, 5, txt =  "se propone además de seguridad militar/judicial, implementar sistemas de vigilancia", ln = 9)   
+    pdf.cell(200, 5, txt =  ", monitoreo así como los demás delitos de alta taza de ocurrencia.", ln = 10)   
     pdf.cell(200, 5, txt =  f"Fecha: {get_date()}", ln = 5)
     pdf.output(name)
 
@@ -125,3 +128,4 @@ if __name__ == '__main__':
     generar_informe(count_crimes, count_crimes_none)
     generar_mapa(data_prepared)
     
+
