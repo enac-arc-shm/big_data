@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import datetime
 import locale
 import numpy as np
+import folium
 
 
 
@@ -38,6 +39,7 @@ def modelo_analisis(df):
             df_resoulution = df_category[df_category['Resolution'] == 'NONE']
             count_crimes_none[category] = len(df_resoulution.index)
     return count_crimes, count_crimes_none
+
 
 def grafica_barras(data_total, data_none):
     labels = data_total.keys()
@@ -85,16 +87,41 @@ def generar_informe(count_crimes, count_crimes_none):
     pdf.image("Data/img/Map-Crime_incidents_recurrents_fig_1.png", 25,35,150)
     pdf.image("Data/img/Map-Crime_incidents_recurrents_fig_2.png", 25,150,150)
     pdf.add_page()
+    pdf.cell(200, 5, txt =  f'Crimen {"  " * 49} Coun' , ln = 2)
+    pdf.cell(200, 5, txt =  '' , ln = 2)
+    for crimen, count in count_crimes.items():
+        espacio = 55
+        espacio -= len(crimen)
+        pdf.cell(200, 6, txt =  f'{crimen}{"_" * espacio}{count}' , ln = 2)
     pdf.cell(200, 150, txt =  "", ln = 1)
     pdf.cell(200, 5, txt =  "TOMA DE DECISIONES:", ln = 2)
-    pdf.cell(200, 5, txt =  "De acuerdo a los resultados obtenidos, nos damos cuenta que en la mayoría de casos de crimen según la zona, no son resueltos. ", ln = 3)
-    pdf.cell(200, 5, txt =  "El crimen más común es el de larceny/theft, y este mismo crimen, es el que menos resoluciones tiene, por lo que, deberían tomar acciones ante este.", ln = 4)
+    pdf.cell(200, 5, txt =  "De acuerdo a los resultados obtenidos, nos damos cuenta que en la mayoría de ", ln = 3)
+    pdf.cell(200, 5, txt =  "casos de crimen según la zona, no son resueltos. El crimen más común es el de ", ln = 4)
+    pdf.cell(200, 5, txt =  "larceny/theft y este mismo crimen, es el que menos resoluciones tiene, por lo que", ln = 5)  
+    pdf.cell(200, 5, txt =  "deberían tomar acciones ante este.", ln = 6)   
     pdf.cell(200, 5, txt =  f"Fecha: {get_date()}", ln = 5)
     pdf.output(name)
+
+
+def generar_mapa(df):
+    map_crime = folium.Map(location = [df['Y'].mean(), df['X'].mean()], zoom_start=15)
+    list_category = df['Category'].unique().tolist()
+    colors = ['red', 'black', 'blue', 'green', 'gray', 'purple', 'orange']
+    icons = ['glyphicon-usd', 'glyphicon-folder-open', 'glyphicon-dashboard', 'glyphicon-thumbs-down', 'glyphicon-remove', 'glyphicon-remove-sign', 'glyphicon-remove-circle']
+    contador = 0
+    for category in list_category:
+        df_category = df.query(f"Category == '{category}'")
+        if len(df_category.index) > 1500:
+            folium.Marker([df_category['Y'].mean(), df_category['X'].mean()], popup=f"Concurrencia de criemenes de {category}", icon=folium.Icon(icon=f'{icons[contador]}', color=f'{colors[contador]}')).add_to(map_crime)
+            folium.CircleMarker([df_category['Y'].mean(), df_category['X'].mean()], radius = 80, color = f'{colors[contador]}' ,popup=f"Concurrencia de criemenes de {category}", fill_color=f'{colors[contador]}').add_to(map_crime)
+            contador += 1
+    map_crime.save('Data/HTML/Map-Crime_incidents_recurrents.html')
+
 
 if __name__ == '__main__':
     data = recopilar_datos()
     data_prepared = preparar_datos(data)
     count_crimes, count_crimes_none = modelo_analisis(data_prepared)
     generar_informe(count_crimes, count_crimes_none)
+    generar_mapa(data_prepared)
     

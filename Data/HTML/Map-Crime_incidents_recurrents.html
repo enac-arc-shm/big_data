@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8839db8568c5d38875409ccc441f38fa {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_8839db8568c5d38875409ccc441f38fa" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8839db8568c5d38875409ccc441f38fa = L.map(
+                "map_8839db8568c5d38875409ccc441f38fa",
+                {
+                    center: [37.76854108075901, -122.42182192941803],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 15,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d3424e28f6a609d45ed5f9f72d569444 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+            var marker_ddf0c1d162743184642df408e956b257 = L.marker(
+                [37.77479349117398, -122.42120011563459],
+                {}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+            var icon_6409d9c121f70c7bf5beaefd2c399b69 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon-usd", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_ddf0c1d162743184642df408e956b257.setIcon(icon_6409d9c121f70c7bf5beaefd2c399b69);
+        
+    
+        var popup_2ae02f4e6ebf896db9fb575cf20696f9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_90db28c489db5a71a484c76b938c3795 = $(`<div id="html_90db28c489db5a71a484c76b938c3795" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de LARCENY/THEFT</div>`)[0];
+                popup_2ae02f4e6ebf896db9fb575cf20696f9.setContent(html_90db28c489db5a71a484c76b938c3795);
+            
+        
+
+        marker_ddf0c1d162743184642df408e956b257.bindPopup(popup_2ae02f4e6ebf896db9fb575cf20696f9)
+        ;
+
+        
+    
+    
+            var circle_marker_cc8d9ed8fab0bc6fd4ddb12483f08258 = L.circleMarker(
+                [37.77479349117398, -122.42120011563459],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 80, "stroke": true, "weight": 3}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+        var popup_65ac03e125cc1cf7966430cbc17ebe2d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ea5db413f750fff734ab52eca7a177cd = $(`<div id="html_ea5db413f750fff734ab52eca7a177cd" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de LARCENY/THEFT</div>`)[0];
+                popup_65ac03e125cc1cf7966430cbc17ebe2d.setContent(html_ea5db413f750fff734ab52eca7a177cd);
+            
+        
+
+        circle_marker_cc8d9ed8fab0bc6fd4ddb12483f08258.bindPopup(popup_65ac03e125cc1cf7966430cbc17ebe2d)
+        ;
+
+        
+    
+    
+            var marker_901d688d1ec2df2570c358263d2a8243 = L.marker(
+                [37.768476670836435, -122.41824078456317],
+                {}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+            var icon_7746d5d83a9f8b5dd83bae820c1fdbba = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon-folder-open", "iconColor": "white", "markerColor": "black", "prefix": "glyphicon"}
+            );
+            marker_901d688d1ec2df2570c358263d2a8243.setIcon(icon_7746d5d83a9f8b5dd83bae820c1fdbba);
+        
+    
+        var popup_1bfe384007ccfbf7169bca4f1133de58 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fd1cc5ad0ef042339f2713650d352ddf = $(`<div id="html_fd1cc5ad0ef042339f2713650d352ddf" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de WARRANTS</div>`)[0];
+                popup_1bfe384007ccfbf7169bca4f1133de58.setContent(html_fd1cc5ad0ef042339f2713650d352ddf);
+            
+        
+
+        marker_901d688d1ec2df2570c358263d2a8243.bindPopup(popup_1bfe384007ccfbf7169bca4f1133de58)
+        ;
+
+        
+    
+    
+            var circle_marker_1b7272150ed2975c7319dea84c6ae857 = L.circleMarker(
+                [37.768476670836435, -122.41824078456317],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "black", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 80, "stroke": true, "weight": 3}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+        var popup_ef88ae1b23ac531c45d06ee9c55d086b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1b0d9de06d1f0b36d0749e507796babe = $(`<div id="html_1b0d9de06d1f0b36d0749e507796babe" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de WARRANTS</div>`)[0];
+                popup_ef88ae1b23ac531c45d06ee9c55d086b.setContent(html_1b0d9de06d1f0b36d0749e507796babe);
+            
+        
+
+        circle_marker_1b7272150ed2975c7319dea84c6ae857.bindPopup(popup_ef88ae1b23ac531c45d06ee9c55d086b)
+        ;
+
+        
+    
+    
+            var marker_27cf364458161ddbfeddc29781e414fe = L.marker(
+                [37.75775751622305, -122.42839960217526],
+                {}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+            var icon_96f3d3e8266e162446fa5db627ece911 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon-dashboard", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_27cf364458161ddbfeddc29781e414fe.setIcon(icon_96f3d3e8266e162446fa5db627ece911);
+        
+    
+        var popup_bf89434af70449daa1efc08b9b8aaa90 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8f5dcbf11ddc0c0a808d99ea85f98240 = $(`<div id="html_8f5dcbf11ddc0c0a808d99ea85f98240" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de VEHICLE THEFT</div>`)[0];
+                popup_bf89434af70449daa1efc08b9b8aaa90.setContent(html_8f5dcbf11ddc0c0a808d99ea85f98240);
+            
+        
+
+        marker_27cf364458161ddbfeddc29781e414fe.bindPopup(popup_bf89434af70449daa1efc08b9b8aaa90)
+        ;
+
+        
+    
+    
+            var circle_marker_23c4210567a27acbf0aeef1105989707 = L.circleMarker(
+                [37.75775751622305, -122.42839960217526],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 80, "stroke": true, "weight": 3}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+        var popup_c47af5f4cc98cc12499ea7445ad02279 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_373ed15c82b2ea6cf38baa8d8b58f974 = $(`<div id="html_373ed15c82b2ea6cf38baa8d8b58f974" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de VEHICLE THEFT</div>`)[0];
+                popup_c47af5f4cc98cc12499ea7445ad02279.setContent(html_373ed15c82b2ea6cf38baa8d8b58f974);
+            
+        
+
+        circle_marker_23c4210567a27acbf0aeef1105989707.bindPopup(popup_c47af5f4cc98cc12499ea7445ad02279)
+        ;
+
+        
+    
+    
+            var marker_e9b48d5eda1444ce18473a00c2d938a6 = L.marker(
+                [37.77169160892726, -122.42329825198145],
+                {}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+            var icon_d3f96cd7610ee2306db229a7e10adcbc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon-thumbs-down", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_e9b48d5eda1444ce18473a00c2d938a6.setIcon(icon_d3f96cd7610ee2306db229a7e10adcbc);
+        
+    
+        var popup_dca5882bcded2955be06934a27faaf61 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_16296475057f07f8389bfd3fb3f7556f = $(`<div id="html_16296475057f07f8389bfd3fb3f7556f" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de NON-CRIMINAL</div>`)[0];
+                popup_dca5882bcded2955be06934a27faaf61.setContent(html_16296475057f07f8389bfd3fb3f7556f);
+            
+        
+
+        marker_e9b48d5eda1444ce18473a00c2d938a6.bindPopup(popup_dca5882bcded2955be06934a27faaf61)
+        ;
+
+        
+    
+    
+            var circle_marker_f511d14297cdbc9be8f4c9bc0a8779f4 = L.circleMarker(
+                [37.77169160892726, -122.42329825198145],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 80, "stroke": true, "weight": 3}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+        var popup_4ef35eeb10977d1aadcc495373c16867 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4e3ddc398c64e53274d8ce95d5584be1 = $(`<div id="html_4e3ddc398c64e53274d8ce95d5584be1" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de NON-CRIMINAL</div>`)[0];
+                popup_4ef35eeb10977d1aadcc495373c16867.setContent(html_4e3ddc398c64e53274d8ce95d5584be1);
+            
+        
+
+        circle_marker_f511d14297cdbc9be8f4c9bc0a8779f4.bindPopup(popup_4ef35eeb10977d1aadcc495373c16867)
+        ;
+
+        
+    
+    
+            var marker_4796cf07d077c733daf5778adb1be56b = L.marker(
+                [37.766072209645465, -122.42316722633093],
+                {}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+            var icon_cf34effb4f32134f825b9ce897164263 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon-remove", "iconColor": "white", "markerColor": "gray", "prefix": "glyphicon"}
+            );
+            marker_4796cf07d077c733daf5778adb1be56b.setIcon(icon_cf34effb4f32134f825b9ce897164263);
+        
+    
+        var popup_0cb9cdf96c980b1ea2b731df950a4003 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d94c03589f38c11a624ca65c4509bc1f = $(`<div id="html_d94c03589f38c11a624ca65c4509bc1f" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de VANDALISM</div>`)[0];
+                popup_0cb9cdf96c980b1ea2b731df950a4003.setContent(html_d94c03589f38c11a624ca65c4509bc1f);
+            
+        
+
+        marker_4796cf07d077c733daf5778adb1be56b.bindPopup(popup_0cb9cdf96c980b1ea2b731df950a4003)
+        ;
+
+        
+    
+    
+            var circle_marker_9c93a67cc119156fed6d329e71dd6548 = L.circleMarker(
+                [37.766072209645465, -122.42316722633093],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 80, "stroke": true, "weight": 3}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+        var popup_ef91c3f5efa83898d6c1c57537967201 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fda718463615653ad435755f77382491 = $(`<div id="html_fda718463615653ad435755f77382491" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de VANDALISM</div>`)[0];
+                popup_ef91c3f5efa83898d6c1c57537967201.setContent(html_fda718463615653ad435755f77382491);
+            
+        
+
+        circle_marker_9c93a67cc119156fed6d329e71dd6548.bindPopup(popup_ef91c3f5efa83898d6c1c57537967201)
+        ;
+
+        
+    
+    
+            var marker_e1b647f7d24f9baa09c81c054108802b = L.marker(
+                [37.765928326550714, -122.41878885055074],
+                {}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+            var icon_d62360bf69c523424fa68617b6f7ee2a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon-remove-sign", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_e1b647f7d24f9baa09c81c054108802b.setIcon(icon_d62360bf69c523424fa68617b6f7ee2a);
+        
+    
+        var popup_b4c2bb44d0cc16abf88d8a5cd3a8fe80 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c24c67f454375a5c1edca1698de95331 = $(`<div id="html_c24c67f454375a5c1edca1698de95331" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de ASSAULT</div>`)[0];
+                popup_b4c2bb44d0cc16abf88d8a5cd3a8fe80.setContent(html_c24c67f454375a5c1edca1698de95331);
+            
+        
+
+        marker_e1b647f7d24f9baa09c81c054108802b.bindPopup(popup_b4c2bb44d0cc16abf88d8a5cd3a8fe80)
+        ;
+
+        
+    
+    
+            var circle_marker_57950d8bbaf4200aba04b7fd2f44c90b = L.circleMarker(
+                [37.765928326550714, -122.41878885055074],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 80, "stroke": true, "weight": 3}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+        var popup_cf3d6f1f61d688d0da3e5f55d432c541 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0ab930b63890d7af5adad20fe6c82f0a = $(`<div id="html_0ab930b63890d7af5adad20fe6c82f0a" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de ASSAULT</div>`)[0];
+                popup_cf3d6f1f61d688d0da3e5f55d432c541.setContent(html_0ab930b63890d7af5adad20fe6c82f0a);
+            
+        
+
+        circle_marker_57950d8bbaf4200aba04b7fd2f44c90b.bindPopup(popup_cf3d6f1f61d688d0da3e5f55d432c541)
+        ;
+
+        
+    
+    
+            var marker_4845a3358c6821f075a611c4c09b9a87 = L.marker(
+                [37.76335921614213, -122.42092213474356],
+                {}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+            var icon_a05584fd85e579edc8a879c707849b2a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "glyphicon-remove-circle", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_4845a3358c6821f075a611c4c09b9a87.setIcon(icon_a05584fd85e579edc8a879c707849b2a);
+        
+    
+        var popup_2c96ffd6ef4a35f4476076d27020814d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1a74ac96e6beaacb131417bfeb967eb2 = $(`<div id="html_1a74ac96e6beaacb131417bfeb967eb2" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de OTHER OFFENSES</div>`)[0];
+                popup_2c96ffd6ef4a35f4476076d27020814d.setContent(html_1a74ac96e6beaacb131417bfeb967eb2);
+            
+        
+
+        marker_4845a3358c6821f075a611c4c09b9a87.bindPopup(popup_2c96ffd6ef4a35f4476076d27020814d)
+        ;
+
+        
+    
+    
+            var circle_marker_509d6fa560fb433827855a89ff05942d = L.circleMarker(
+                [37.76335921614213, -122.42092213474356],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 80, "stroke": true, "weight": 3}
+            ).addTo(map_8839db8568c5d38875409ccc441f38fa);
+        
+    
+        var popup_bb3e85769f3e906fbf37b26c5a8a7205 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a0844bc4895ed3421a5d5fbd583eabc6 = $(`<div id="html_a0844bc4895ed3421a5d5fbd583eabc6" style="width: 100.0%; height: 100.0%;">Concurrencia de criemenes de OTHER OFFENSES</div>`)[0];
+                popup_bb3e85769f3e906fbf37b26c5a8a7205.setContent(html_a0844bc4895ed3421a5d5fbd583eabc6);
+            
+        
+
+        circle_marker_509d6fa560fb433827855a89ff05942d.bindPopup(popup_bb3e85769f3e906fbf37b26c5a8a7205)
+        ;
+
+        
+    
+</script>
+</html>
