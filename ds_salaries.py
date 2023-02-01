@@ -49,10 +49,11 @@ def modelo_analisis(df):
         if df_mean_country['salary_in_usd'].mean() < min:
             min = df_mean_country['salary_in_usd'].mean()
             country_min = country
+        print(f"{country} {df_mean_country['salary_in_usd'].mean()}")
     info = {
         'Promedio general':df['salary_in_usd'].mean(),
-        f'País con mas ingresos = {country_max}':max,
-        f'País con menos ingresos = {country_min}':min
+        f'País con mas ingresos  {country_max}':max,
+        f'País con menos ingresos  {country_min}':min
     }
     return mean_levels, info
 
@@ -78,17 +79,18 @@ def generar_informe(mean_levels, info):
     pdf.add_page()
     n = 1
     for key, data in info.items():
-         pdf.cell(200, 5, txt =  f"{key}-->     {data}", ln = n)
+         pdf.cell(200, 5, txt =  f"{key} ---->      ${data}", ln = n)
          n+=1
-    pdf.cell(200, 5, txt =  "TOMA DE DECISIONES:", ln = 4)
-    pdf.cell(200, 5, txt =  "De acuerdo a los resultados obtenidos, nos damos cuenta que en la mayoría de ", ln = 5)
-    pdf.cell(200, 5, txt =  "casos de crimen según la zona, no son resueltos. El crimen más común es el de ", ln = 6)
-    pdf.cell(200, 5, txt =  "larceny/theft y este mismo crimen, es el que menos resoluciones tiene, por lo que", ln = 7)  
-    pdf.cell(200, 5, txt =  "Los resultados nos muestran que el crimen mas concurrido y para desgracia el ", ln = 8)   
-    pdf.cell(200, 5, txt =  "lugar, el menos solucionado es el robo, por lo que se deben tomar medidas de seguridad ", ln = 9)   
-    pdf.cell(200, 5, txt =  "inmediatas para solucionar y reducir el número de incidentes de este tipo,", ln = 10)   
-    pdf.cell(200, 5, txt =  "se propone además de seguridad militar/judicial, implementar sistemas de vigilancia", ln = 11)   
-    pdf.cell(200, 5, txt =  ", monitoreo así como los demás delitos de alta taza de ocurrencia.", ln = 12)   
+    pdf.cell(200, 30, txt =  "------------------------------------------------------------------------------------------------------------", ln = 20)
+    pdf.cell(200, 20, txt =  "TOMA DE DECISIONES:", ln = 20)
+    pdf.cell(200, 5, txt =  "De acuerdo a los resultados obtenidos, nos damos cuenta que en el promedio de  ", ln = 5)
+    pdf.cell(200, 5, txt =  "salario dado para el nivel SE con respecto a los otros niveles es visiblemente ", ln = 6)
+    pdf.cell(200, 5, txt =  "mayor en comparación a MI y EN siendo este ultimo el más bajo de los 3.", ln = 7)  
+    pdf.cell(200, 5, txt =  "Por otro lado nos podemos dar cuenta que la diferencia de salarios entre los  ", ln = 8)   
+    pdf.cell(200, 5, txt =  "diferentes paises es muy notable principalmente en la comparación del país  ", ln = 9)   
+    pdf.cell(200, 5, txt =  "con mejor salario en comparación con el peor, es por tanto que debemos de ", ln = 10)   
+    pdf.cell(200, 5, txt =  "centrar la atención en por que esta diversidad en los salarios, en la calidad", ln = 11)   
+    pdf.cell(200, 5, txt =  "u otros aspectos que pueden verse implicados", ln = 12)   
     pdf.cell(200, 5, txt =  f"Fecha: {get_date()}", ln = 13)
     pdf.output(name)
 
