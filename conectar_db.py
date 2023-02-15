@@ -30,6 +30,10 @@ def insertar_tipos_malware():
         conexion.commit()
         cursor.close()
         conexion.close()
-        return("Registros insertados")
+        print("Registros insertados")
     except sqlite3.OperationalError:
-        return("Error al insertar registros")
+        print("Error al insertar registros")
+
+if __name__ == '__main__':
+    crear_tables(crear_db())
+    insertar_tipos_malware()
