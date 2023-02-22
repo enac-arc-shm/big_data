@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tres textareas y un botón</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			margin: 0;
+		}
+		
+		h1 {
+			margin-top: 0;
+		}
+		
+		textarea {
+			margin: 10px;
+		}
+		
+		button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 12px 24px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		
+		button:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<h1>Tres textareas y un botón</h1>
+	<div style="display: flex;">
+		<textarea id="textarea3" rows="30" cols="50"></textarea>
+		<textarea id="textarea1" rows="30" cols="25"></textarea>
+		<textarea id="textarea2" rows="30" cols="25"></textarea>
+	</div>
+	<br>
+	<button type="button" onclick="enviar()">Enviar</button>
+	
+	<script>
+        function enviar() {
+            // Obtenemos el valor del primer textarea
+            const textoCompleto = document.getElementById("textarea3").value;
+            
+            // Dividimos el texto en renglones
+            const renglones = textoCompleto.split("\n");
+            
+            // Recorremos los renglones y los distribuimos entre los otros dos textarea
+            let texto1 = "";
+            let texto2 = "";
+            for (let i = 0; i < renglones.length; i++) {
+                if (i % 2 === 0) {
+                    texto1 += renglones[i] + "\n";
+                } else {
+                    texto2 += renglones[i] + "\n";
+                }
+            }
+            
+            // Establecemos el valor de los otros dos textarea con los renglones del texto
+            document.getElementById("textarea1").value = texto1;
+            document.getElementById("textarea2").value = texto2;
+        }
+    </script>
+    
+    
+</body>
+</html>
