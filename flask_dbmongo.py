@@ -17,3 +17,9 @@ def dbConexion():
     except ConnectionError:
         print("Error al conectar con la db")
     return db
+
+def consulta_sensores():
+    db = dbConexion()
+    sensores = db['sensores']
+    c_sensores = sensores.find()
+    return c_sensores
