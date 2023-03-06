@@ -12,7 +12,7 @@ client = MongoClient()
 
 def dbConexion():
     try:
-        client = MongoClient('mongodb+srv://21300018:sergio123@cluster0.ctse5jc.mongodb.net/test')
+        client = MongoClient('mongodb+srv://21300062:mongoatlas@cluster02023.aoycnel.mongodb.net')
         db = client['db_sensor']
     except ConnectionError:
         print("Error al conectar con la db")
